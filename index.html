@@ -1,10 +1,8 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>krystian.</title>
   <link rel="stylesheet" href="src/style.css" />
 </head>
@@ -12,88 +10,62 @@
   <nav class="navbar">
     <span class="logo">krystian.</span>
     <ul class="nav-links">
-      <li><a href="#home">home</a></li>
-      <li><a href="#what-i-do">what i do</a></li>
-      <li><a href="#projects-scroll">projects</a></li>
-      <li><a href="#about">about</a></li>
-      <li><a href="#say-hi">say hi</a></li>
+      <li><a href="#project1">Project 1</a></li>
+      <li><a href="#project2">Project 2</a></li>
+      <li><a href="#archive">Archive</a></li>
     </ul>
   </nav>
-  <main>
-    <section class="section hero-section" id="home">
-      <div class="hero-inner">
-        <h1>krystian.</h1>
-        <div class="hero-text">
-          <p>[ hero text block 1 ]</p>
-          <p>[ hero text block 2 ]</p>
+      <main>
+  <!-- Hero Section -->
+  <section class="section hero-section" id="home">
+    <div class="hero-inner">
+      <h1>krystian.</h1>
+      <div class="hero-text">
+        <p>[ hero text block 1 ]</p>
+        <p>[ hero text block 2 ]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What I Do Section -->
+  <section class="section what-i-do-section" id="what-i-do">
+    <div class="placeholder">[ What I Do ]</div>
+  </section>
+
+  <!-- Horizontal Scroll Projects -->
+  <section class="horizontal-scroll-section" id="projects-scroll">
+    <div class="horizontal-inner">
+      <!-- Slide 1 -->
+      <div class="slide project1-slide" id="project1">
+        <div class="slide-content">
+          <!-- Project 1 Content -->
         </div>
       </div>
-    </section>
-
-    <section class="section what-i-do-section" id="what-i-do">
-      <div class="placeholder">[ What I Do ]</div>
-    </section>
-
-    <section class="horizontal-scroll-section" id="projects-scroll">
-      <div class="horizontal-inner">
-        <!-- Project 1 -->
-        <div class="slide project1-slide" id="project-1">
-          <div class="slide-nav">
-            <span class="logo">krystian.</span>
-            <ul class="slide-links">
-              <li>what i do</li>
-              <li>projects</li>
-              <li>about</li>
-              <li>archive</li>
-              <li>say hi</li>
-            </ul>
-          </div>
-          <div class="slide-content">
-            <div class="placeholder">[ Project 1 Content ]</div>
-          </div>
-        </div>
-        <!-- Project 2 -->
-        <div class="slide project2-slide" id="project-2">
-          <div class="slide-nav">
-            <span class="logo">krystian.</span>
-            <ul class="slide-links">
-              <li>what i do</li>
-              <li>projects</li>
-              <li>about</li>
-              <li>archive</li>
-              <li>say hi</li>
-            </ul>
-          </div>
-          <div class="slide-content">
-            <div class="placeholder">[ Project 2 Content ]</div>
-          </div>
-        </div>
-        <!-- Archive -->
-        <div class="slide archive-slide" id="archive">
-          <div class="slide-nav">
-            <span class="logo">krystian.</span>
-            <ul class="slide-links">
-              <li>what i do</li>
-              <li>projects</li>
-              <li>about</li>
-              <li>archive</li>
-              <li>say hi</li>
-            </ul>
-          </div>
-          <div class="slide-content">
-            <div class="placeholder">[ Archive Content ]</div>
-          </div>
+      <!-- Slide 2 -->
+      <div class="slide project2-slide" id="project2">
+        <div class="slide-content">
+          <!-- Project 2 Content -->
         </div>
       </div>
-    </section>
+      <!-- Slide 3 -->
+      <div class="slide archive-slide" id="archive">
+        <div class="slide-content">
+          <!-- Archive Content -->
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section class="section about-section" id="about">
-      <div class="placeholder">[ About ]</div>
-    </section>
-    <section class="section say-hi-section" id="say-hi">
-      <div class="placeholder">[ Say Hi ]</div>
-    </section>
-  </main>
-  <script type="module" src="/src/main.js"></script>
+  <!-- About Section -->
+  <section class="section about-section" id="about">
+    <div class="placeholder">[ About ]</div>
+  </section>
+
+  <!-- Say Hi Section -->
+  <section class="section say-hi-section" id="say-hi">
+    <div class="placeholder">[ Say Hi ]</div>
+  </section>
+</main>
+  <script type="module" src="src/main.js"></script>
 </body>
 </html>
