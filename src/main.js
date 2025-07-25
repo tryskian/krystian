@@ -21,7 +21,12 @@ if (horizontalSection && horizontalInner) {
         pin: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
-        snap: 1 / (panels.length - 1)
+        markers: false,
+        snap: {
+          snapTo: 1 / (panels.length - 1),
+          duration: 0.3,
+          ease: "power2.out"
+        }
       }
     });
     const st = horizontalTween.scrollTrigger;

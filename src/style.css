@@ -5,53 +5,61 @@
   padding: 0;
 }
 
+/* Global Scroll & Snap */
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
-
 body {
-  overflow-x: hidden;
   overflow-y: auto;
-  font-family: 'Inter', sans-serif;
-  color: #111;
-  background: #fafbfc;
 }
 
 /* Navbar */
 /* make the navbar truly fixed on top */
 .navbar {
-  position: fixed;      /* instead of sticky */
-  top: 0;
-  left: 0;
-  width: 100vw;         /* full width */
-  z-index: 9999;        /* sit above everything else */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  z-index: 1000;
 }
-
-/* prevent content from hiding under the fixed nav */
-body {
-  padding-top: 4rem;    /* adjust 4rem to match your navbar height */
-  overflow-x: hidden;
-  overflow-y: auto;
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
 }
-
 .logo {
-  font-weight: bold;
-  font-size: 1.3rem;
-  letter-spacing: 0.05em;
+  font-size: 1.25rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+/* optional diamond icon before your name */
+.logo::before {
+  content: '♦';
+  margin-right: 0.5rem;
+  color: #6b44f7;
+  font-size: 1rem;
 }
 .nav-links {
-  list-style: none;
   display: flex;
   gap: 2rem;
+  list-style: none;
 }
 .nav-links a {
   text-decoration: none;
-  color: #222;
+  color: #111;
+  font-size: 0.9rem;
   font-weight: 500;
-  font-size: 1rem;
   transition: color 0.2s;
 }
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
   color: #6b44f7;
 }
 
@@ -176,4 +184,18 @@ body {
   .slide-content {
     padding: 1.5rem 1rem;
   }
+}
+
+/* Section Snap Points */
+main > section {
+  scroll-snap-align: start;
+  height: 100vh;
+}
+
+/* Horizontal Snap (optional manual swipe) */
+.horizontal-inner {
+  scroll-snap-type: x mandatory;
+}
+.horizontal-inner .slide {
+  scroll-snap-align: start;
 }
