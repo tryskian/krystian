@@ -88,7 +88,7 @@ html {
   justify-content: center;
 }
 .hero-section {
-  background: #e5e5e5;
+  background: #f9f9f9;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -113,14 +113,14 @@ html {
   display: flex;
   gap: 2rem;
 }
-.hero-text p {
+/* .hero-text p {
   background: #fff;
   padding: 1.2rem 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   font-size: 1.1rem;
   color: #555;
-}
+} */
 
 /* Horizontal Scroll Section */
 .horizontal-scroll-section {
