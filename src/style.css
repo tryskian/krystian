@@ -146,14 +146,13 @@ body {
 .slide-links li:hover {
   color: #6b44f7;
 }
+
 .slide-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  align-items: start;
   padding: 3rem 2.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 2rem;
-  height: auto;
 }
 
 /* Fixes for Project Grids */
