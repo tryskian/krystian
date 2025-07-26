@@ -39,6 +39,7 @@ if (horizontalSection && horizontalInner) {
 
     // --- One-at-a-time horizontal scroll (debounced) ---
     let isScrolling = false;
+    let isActivated = false; // lockout for first scroll after pin
     let currentIndex = 0;
     const maxIndex = panels.length - 1;
 
@@ -51,6 +52,12 @@ if (horizontalSection && horizontalInner) {
       if (!st.isActive) return; // allow normal scroll if not pinned
       const deltaX = e.deltaX || 0;
       const deltaY = e.deltaY || e.detail || e.wheelDelta || 0;
+      // Activation lock: require one gesture to activate after pin
+      if (!isActivated) {
+        isActivated = true;
+        e.preventDefault();
+        return;
+      }
       // Only trigger horizontal scroll if gesture is mostly horizontal
       if (Math.abs(deltaX) > Math.abs(deltaY)) {
         // If at first or last slide and user scrolls further, allow normal scroll to escape
@@ -108,6 +115,13 @@ if (horizontalSection && horizontalInner) {
 
     // Mouse wheel
     horizontalSection.addEventListener('wheel', handleWheel, { passive: false });
+
+    // Reset activation lock when leaving/re-entering section
+    st.vars.onToggle = (self) => {
+      if (self.isActive) {
+        isActivated = false;
+      }
+    };
 
     // Sync currentIndex on manual scroll (e.g. nav click or drag)
     st.vars.onUpdate = () => {
