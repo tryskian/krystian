@@ -109,6 +109,7 @@ html {
   display: flex;
   height: 100vh;
   scroll-snap-type: x mandatory;
+  align-items: stretch;
 }
 .horizontal-inner .slide {
   scroll-snap-align: start;
@@ -117,12 +118,14 @@ html {
 /* Slide Layout */
 
 .slide {
-  flex: 0 0 100vw;
+  flex: 0 0 auto;
+  width: 100vw;
   display: grid;
   grid-template-columns: 340px 1fr;
   align-items: center;
   height: 100vh;
-  min-width: 0;
+  min-width: 100vw;
+  box-sizing: border-box;
 }
 .slide-content {
   display: grid;
