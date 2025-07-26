@@ -48,9 +48,13 @@ if (horizontalSection && horizontalInner) {
     }
 
     function handleWheel(e) {
-      if (isScrolling) return;
-      // Only trigger if the section is pinned (in view)
-      if (!st.isActive) return;
+      // Only intercept if pinned and horizontal scroll is possible
+      if (!st.isActive) return; // allow normal scroll if not pinned
+      if (isScrolling) {
+        e.preventDefault();
+        return;
+      }
+      // Only scroll horizontally if the section is pinned
       e.preventDefault();
       isScrolling = true;
       const delta = e.deltaY || e.detail || e.wheelDelta;
@@ -59,7 +63,7 @@ if (horizontalSection && horizontalInner) {
       } else if (delta < 0) {
         scrollToPanel(currentIndex - 1);
       }
-      setTimeout(() => { isScrolling = false; }, 600); // adjust delay as needed
+      setTimeout(() => { isScrolling = false; }, 600);
     }
 
     // Touch support
@@ -84,7 +88,7 @@ if (horizontalSection && horizontalInner) {
     // Mouse wheel
     horizontalSection.addEventListener('wheel', handleWheel, { passive: false });
 
-    // Sync currentIndex on manual scroll (e.g. nav click)
+    // Sync currentIndex on manual scroll (e.g. nav click or drag)
     st.vars.onUpdate = () => {
       const progress = st.progress;
       const idx = Math.round(progress * maxIndex);
