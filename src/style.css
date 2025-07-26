@@ -145,7 +145,7 @@ html {
   gap: 6rem;
   align-items: center;
   padding: 3rem 2.5rem;
-  min-width: 800px;
+  min-width: max(1000px, 100vw);
   width: 100%;
   max-width: 100vw;
   height: 100%;
