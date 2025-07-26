@@ -17,7 +17,7 @@ if (horizontalSection && horizontalInner) {
         trigger: horizontalSection,
         start: "top top",
         end: () => "+=" + (horizontalInner.scrollWidth - window.innerWidth),
-        // scrub: true, // Removed to prevent split view and enable full pinning
+        scrub: true, // Restored to prevent skipping and allow custom snap
         pin: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
