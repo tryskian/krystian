@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
-/*  Base */
+/* Base Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
 body {
   font-family: 'Inter', sans-serif;
+  overflow-y: auto;
 }
 
 /* Global Scroll & Snap */
@@ -16,9 +16,6 @@ html {
   overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
-}
-body {
-  overflow-y: auto;
 }
 
 /* Navbar */
@@ -97,7 +94,7 @@ body {
   color: #555;
 }
 
-/* Horizontal Scroll */
+/* Horizontal Scroll Section */
 .horizontal-scroll-section {
   position: relative;
   width: 100vw;
@@ -107,7 +104,13 @@ body {
 .horizontal-inner {
   display: flex;
   height: 100vh;
+  scroll-snap-type: x mandatory;
 }
+.horizontal-inner .slide {
+  scroll-snap-align: start;
+}
+
+/* Slide Layout */
 .slide {
   flex: 0 0 100vw;
   display: grid;
@@ -115,6 +118,28 @@ body {
   align-items: center;
   height: 100vh;
 }
+.slide-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  align-items: start;
+  padding: 3rem 2.5rem;
+}
+
+/* Gallery Grid */
+.project-gallery.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+.project-gallery .placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid #000;
+}
+
+/* Slide Nav */
 .slide-nav {
   background: #fff;
   border-right: 1px solid #e0e0e0;
@@ -147,28 +172,7 @@ body {
   color: #6b44f7;
 }
 
-.slide-content {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 3rem;
-  align-items: start;
-  padding: 3rem 2.5rem;
-}
-
-/* Fixes for Project Grids */
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 1rem;
-  width: 100%;
-}
-.project-gallery .placeholder {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border: 1px solid #000;
-}
-
-/* Slide Backgrounds */
+/* Background Colors */
 .project1-slide {
   background: #ffe4e1;
 }
@@ -192,6 +196,10 @@ body {
     display: block;
     height: auto;
   }
+  .slide-content {
+    display: block;
+    padding: 1.5rem 1rem;
+  }
   .slide-nav {
     flex-direction: row;
     justify-content: space-between;
@@ -202,61 +210,23 @@ body {
     height: auto;
     min-width: 0;
   }
-  .slide-content {
-    padding: 1.5rem 1rem;
-  }
 }
 
-/* Section Snap Points */
+/* Snap Alignment */
 main > section {
   scroll-snap-align: start;
   height: 100vh;
 }
 
-/* Horizontal Snap (optional manual swipe) */
-.horizontal-inner {
-  scroll-snap-type: x mandatory;
-}
-.horizontal-inner .slide {
-  scroll-snap-align: start;
-}
-
-/* Refined What I Do Grid */
+/* What I Do Section */
 .what-i-do-inner {
   display: grid;
   grid-template-columns: 30% 70%;
   align-items: start;
-  gap: 2rem;
+  gap: 3rem;
   max-width: 1200px;
   margin: 0 auto;
   padding: 4rem 2rem;
-}
-.what-heading h2 {
-  font-size: 2.5rem;
-  margin: 0;
-}
-.what-items {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-.what-item h3 {
-  font-size: 1.2rem;
-  margin: 0 0 0.25rem;
-}
-.what-item p {
-  margin: 0;
-  color: #555;
-  line-height: 1.5;
-}
-
-/* Refined What I Do Section Override */
-.what-i-do-inner {
-  display: grid !important;
-  grid-template-columns: 30% 70% !important;
-  align-items: start !important;
-  gap: 3rem !important;
-  justify-content: space-between;
 }
 .what-heading h2 {
   font-size: 3rem;
