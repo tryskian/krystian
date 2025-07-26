@@ -17,14 +17,14 @@ if (horizontalSection && horizontalInner) {
         trigger: horizontalSection,
         start: "top top",
         end: () => "+=" + (horizontalInner.scrollWidth - window.innerWidth),
-        scrub: true,
+        // scrub: true, // Removed to prevent split view and enable full pinning
         pin: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         markers: false,
         snap: {
           snapTo: 1 / (panels.length - 1),
-          duration: 0.3,
+          duration: 0.6, // Slightly longer for a more natural snap
           ease: "power2.out"
         }
       }
@@ -48,26 +48,31 @@ if (horizontalSection && horizontalInner) {
     }
 
     function handleWheel(e) {
-      // Only intercept if pinned and horizontal scroll is possible
       if (!st.isActive) return; // allow normal scroll if not pinned
-      const deltaY = e.deltaY || e.detail || e.wheelDelta;
-      // If at first or last slide and user scrolls further, allow normal scroll to escape
-      if ((currentIndex === 0 && deltaY < 0) || (currentIndex === maxIndex && deltaY > 0)) {
-        return; // let the user scroll vertically out
-      }
-      // Only block if scrolling horizontally between slides
-      if (isScrolling) {
+      const deltaX = e.deltaX || 0;
+      const deltaY = e.deltaY || e.detail || e.wheelDelta || 0;
+      // Only trigger horizontal scroll if gesture is mostly horizontal
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // If at first or last slide and user scrolls further, allow normal scroll to escape
+        if ((currentIndex === 0 && deltaX < 0) || (currentIndex === maxIndex && deltaX > 0)) {
+          return;
+        }
+        if (isScrolling) {
+          e.preventDefault();
+          return;
+        }
         e.preventDefault();
+        isScrolling = true;
+        if (deltaX > 0) {
+          scrollToPanel(currentIndex + 1);
+        } else if (deltaX < 0) {
+          scrollToPanel(currentIndex - 1);
+        }
+        setTimeout(() => { isScrolling = false; }, 600);
+      } else {
+        // If gesture is mostly vertical, allow normal scroll always
         return;
       }
-      e.preventDefault();
-      isScrolling = true;
-      if (deltaY > 0) {
-        scrollToPanel(currentIndex + 1);
-      } else if (deltaY < 0) {
-        scrollToPanel(currentIndex - 1);
-      }
-      setTimeout(() => { isScrolling = false; }, 600);
     }
 
     // Touch support
