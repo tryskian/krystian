@@ -25,8 +25,8 @@ if (horizontalSection && horizontalInner) {
         markers: false,
         snap: {
           snapTo: 1 / (panels.length - 1),
-          duration: 0.6, // Slightly longer for a more natural snap
-          ease: "power2.out"
+          duration: 1.2, // Slower for a more intentional snap
+          ease: "power2.inOut"
         }
       }
     });
@@ -60,7 +60,7 @@ if (horizontalSection && horizontalInner) {
         return;
       }
       // Only trigger horizontal scroll if gesture is mostly horizontal and large enough
-      const wheelThreshold = 80; // px, increase to make less sensitive
+      const wheelThreshold = 160; // px, even less sensitive for more intentional scroll
       if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > wheelThreshold) {
         // If at first or last slide and user scrolls further, allow normal scroll to escape
         if ((currentIndex === 0 && deltaX < 0) || (currentIndex === maxIndex && deltaX > 0)) {
@@ -100,7 +100,7 @@ if (horizontalSection && horizontalInner) {
       const touchEndY = e.changedTouches[0].clientY;
       const dx = touchEndX - touchStartX;
       const dy = touchEndY - touchStartY;
-      const touchThreshold = 120; // px, increase to make less sensitive
+      const touchThreshold = 200; // px, even less sensitive for more intentional swipe
       // Only trigger horizontal scroll if horizontal swipe is dominant and large enough
       if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > touchThreshold && !isScrolling) {
         // If at first/last slide and swiping further, allow normal scroll
