@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
-body {
-  font-family: 'Open Sans', sans-serif;
-}
-
-/* Reset & Base */
+/*  Base */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
 }
 
 /* Global Scroll & Snap */
@@ -22,10 +22,10 @@ body {
 }
 
 /* Navbar */
-/* make the navbar truly fixed on top */
 .navbar {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -45,7 +45,6 @@ body {
   display: flex;
   align-items: center;
 }
-/* optional diamond icon before your name */
 .logo::before {
   content: '♦';
   margin-right: 0.5rem;
@@ -150,10 +149,27 @@ body {
 .slide-content {
   padding: 3rem 2.5rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2rem;
+  height: auto;
 }
+
+/* Fixes for Project Grids */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+.project-gallery .placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid #000;
+}
+
+/* Slide Backgrounds */
 .project1-slide {
   background: #ffe4e1;
 }
@@ -209,84 +225,60 @@ main > section {
 /* Refined What I Do Grid */
 .what-i-do-inner {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 30% 70%;
   align-items: start;
-  gap: 4rem;
-  max-width: 1000px;
-  margin: 6rem auto;
-  padding: 0 2rem;
-  font-family: 'Open Sans', sans-serif;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+.what-heading h2 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+.what-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.what-item h3 {
+  font-size: 1.2rem;
+  margin: 0 0 0.25rem;
+}
+.what-item p {
+  margin: 0;
+  color: #555;
+  line-height: 1.5;
 }
 
-.what-heading {
+/* Refined What I Do Section Override */
+.what-i-do-inner {
+  display: grid !important;
+  grid-template-columns: 30% 70% !important;
+  align-items: start !important;
+  gap: 3rem !important;
+  justify-content: space-between;
+}
+.what-heading h2 {
+  font-size: 3rem;
+  margin: 0;
+  line-height: 1.1;
   text-align: left;
 }
-
-.what-heading h2 {
-  font-size: 2.2rem;
-  font-weight: 600;
-  line-height: 1.3;
-  color: #222;
-}
-
 .what-items {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  justify-content: flex-start;
 }
-
 .what-item h3 {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
   font-weight: 600;
-  margin-bottom: 0.4rem;
 }
-
 .what-item p {
-  font-size: 1rem;
-  line-height: 1.8;
-  margin-top: 0.25rem;
+  margin: 0;
+  font-size: 0.95rem;
   color: #333;
-}
-.project-page-inner {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 4rem;
-  max-width: 1200px;
-  margin: 6rem auto;
-  padding: 0 2rem;
-  align-items: start;
-}
-
-.project-text {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #111;
-}
-
-.project-text h2 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-}
-
-.project-text em {
-  font-style: italic;
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1rem;
-}
-
-.project-grid .placeholder {
-  background: #fff;
-  border: 2px solid #000;
-  height: 140px;
-  width: 140px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #888;
-  font-size: 0.9rem;
+  line-height: 1.4;
 }
