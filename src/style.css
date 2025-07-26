@@ -21,6 +21,7 @@ body {
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
+  /* Enable vertical scroll snap for main sections */
   scroll-snap-type: y mandatory;
 }
 
@@ -106,7 +107,7 @@ html {
   width: 100vw;
   overflow-x: auto;
   overflow-y: hidden;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x mandatory; /* Enable horizontal snap */
   scroll-behavior: smooth;
   background: #f8f8f8;
   display: block !important;
@@ -115,13 +116,13 @@ html {
   width: fit-content;
   display: flex;
   height: 100vh;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x mandatory; /* Enable horizontal snap for children */
   align-items: stretch;
   /* Prevent flex inheritance from .section */
   flex-direction: row;
 }
-.horizontal-inner .slide {
-  scroll-snap-align: start;
+.horizontal-inner > .slide {
+  scroll-snap-align: start; /* Snap each slide to start */
 }
 
 /* Slide Layout */
@@ -138,6 +139,7 @@ html {
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  scroll-snap-align: start; /* Ensure each slide snaps horizontally */
 }
 .slide-content {
   display: grid;
@@ -150,6 +152,7 @@ html {
   max-width: 100vw;
   height: 100%;
   box-sizing: border-box;
+  scroll-snap-align: start; /* Snap slide content as well for robustness */
 }
 
 .slide-content .slide-left {
@@ -279,35 +282,60 @@ main > section {
 }
 
 /* What I Do Section */
+
+
+
 .what-i-do-inner {
   display: grid;
-  grid-template-columns: 30% 70%;
-  align-items: start;
-  gap: 3rem;
-  max-width: 1200px;
+  grid-template-columns: 1fr 2fr;
+  align-items: end;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 0 2rem 0 2rem;
+  min-height: 90vh;
+  height: 90vh;
+}
+.what-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  height: 100%;
+  padding-bottom: 2.5rem;
 }
 .what-heading h2 {
-  font-size: 3rem;
-  margin: 0;
-  line-height: 1.1;
+  font-size: 6rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.05;
+  color: #333;
+  letter-spacing: -2px;
   text-align: left;
 }
 .what-items {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
   justify-content: flex-start;
+  align-items: flex-end;
+  gap: 4.5rem;
+  height: 100%;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+.what-item {
+  text-align: right;
+  max-width: 700px;
 }
 .what-item h3 {
-  font-size: 1.25rem;
-  margin: 0 0 0.5rem;
-  font-weight: 600;
+  font-size: 2.7rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  color: #111;
+  letter-spacing: -1px;
 }
 .what-item p {
   margin: 0;
-  font-size: 0.95rem;
-  color: #333;
-  line-height: 1.4;
+  font-size: 1.35rem;
+  color: #222;
+  line-height: 1.25;
+  font-weight: 400;
 }
