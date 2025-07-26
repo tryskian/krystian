@@ -1,3 +1,14 @@
+// Show navbar when scrolling down from home
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+  // Show navbar if not at the very top (allow a little leeway for mobile bounce)
+  if (window.scrollY > 20) {
+    navbar.classList.add('visible');
+  } else {
+    navbar.classList.remove('visible');
+  }
+});
 import gsap from "https://cdn.jsdelivr.net/npm/gsap@3.11.5/index.js";
 import { ScrollTrigger } from "https://cdn.jsdelivr.net/npm/gsap@3.11.5/ScrollTrigger.js";
 
@@ -58,8 +69,9 @@ if (horizontalSection && horizontalInner) {
         e.preventDefault();
         return;
       }
-      // Only trigger horizontal scroll if gesture is mostly horizontal
-      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      // Only trigger horizontal scroll if gesture is mostly horizontal and large enough
+      const wheelThreshold = 40; // px, increase to make less sensitive
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > wheelThreshold) {
         // If at first or last slide and user scrolls further, allow normal scroll to escape
         if ((currentIndex === 0 && deltaX < 0) || (currentIndex === maxIndex && deltaX > 0)) {
           return;
@@ -77,7 +89,7 @@ if (horizontalSection && horizontalInner) {
         }
         setTimeout(() => { isScrolling = false; }, 600);
       } else {
-        // If gesture is mostly vertical, allow normal scroll always
+        // If gesture is mostly vertical or too small, allow normal scroll always
         return;
       }
     }
@@ -98,8 +110,9 @@ if (horizontalSection && horizontalInner) {
       const touchEndY = e.changedTouches[0].clientY;
       const dx = touchEndX - touchStartX;
       const dy = touchEndY - touchStartY;
-      // Only trigger horizontal scroll if horizontal swipe is dominant
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50 && !isScrolling) {
+      const touchThreshold = 60; // px, increase to make less sensitive
+      // Only trigger horizontal scroll if horizontal swipe is dominant and large enough
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > touchThreshold && !isScrolling) {
         // If at first/last slide and swiping further, allow normal scroll
         if ((currentIndex === 0 && dx > 0) || (currentIndex === maxIndex && dx < 0)) {
           touchStartX = null; touchStartY = null; return;
