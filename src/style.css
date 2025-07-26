@@ -89,7 +89,20 @@ html {
 }
 .hero-section {
   background: #e5e5e5;
+  min-height: 100vh;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hero-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .hero-inner h1 {
   font-size: 2.5rem;
