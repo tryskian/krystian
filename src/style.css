@@ -98,10 +98,14 @@ html {
 .horizontal-scroll-section {
   position: relative;
   width: 100vw;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   background: #f8f8f8;
 }
 .horizontal-inner {
+  min-width: max-content;
   display: flex;
   height: 100vh;
   scroll-snap-type: x mandatory;
@@ -111,23 +115,60 @@ html {
 }
 
 /* Slide Layout */
+
 .slide {
   flex: 0 0 100vw;
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 340px 1fr;
   align-items: center;
   height: 100vh;
+  min-width: 0;
 }
 .slide-content {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 3rem;
-  align-items: start;
+  grid-template-columns: 1fr 2.5fr;
+  gap: 6rem;
+  align-items: center;
   padding: 3rem 2.5rem;
+  min-width: 0;
+}
+
+.slide-content .slide-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+}
+.slide-content .slide-left h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.05;
+  color: #333;
+}
+.slide-content .slide-left h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #444;
+}
+.slide-content .slide-left p {
+  font-size: 1.25rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+.slide-content .slide-right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.slide-content .project-gallery {
+  align-self: center;
 }
 
 /* Gallery Grid */
-.project-gallery.project-grid {
+.project-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 1rem;
