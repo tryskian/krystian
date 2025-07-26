@@ -50,17 +50,21 @@ if (horizontalSection && horizontalInner) {
     function handleWheel(e) {
       // Only intercept if pinned and horizontal scroll is possible
       if (!st.isActive) return; // allow normal scroll if not pinned
+      const deltaY = e.deltaY || e.detail || e.wheelDelta;
+      // If at first or last slide and user scrolls further, allow normal scroll to escape
+      if ((currentIndex === 0 && deltaY < 0) || (currentIndex === maxIndex && deltaY > 0)) {
+        return; // let the user scroll vertically out
+      }
+      // Only block if scrolling horizontally between slides
       if (isScrolling) {
         e.preventDefault();
         return;
       }
-      // Only scroll horizontally if the section is pinned
       e.preventDefault();
       isScrolling = true;
-      const delta = e.deltaY || e.detail || e.wheelDelta;
-      if (delta > 0) {
+      if (deltaY > 0) {
         scrollToPanel(currentIndex + 1);
-      } else if (delta < 0) {
+      } else if (deltaY < 0) {
         scrollToPanel(currentIndex - 1);
       }
       setTimeout(() => { isScrolling = false; }, 600);
@@ -68,21 +72,33 @@ if (horizontalSection && horizontalInner) {
 
     // Touch support
     let touchStartX = null;
+    let touchStartY = null;
     horizontalSection.addEventListener('touchstart', e => {
       if (!st.isActive) return;
-      if (e.touches.length === 1) touchStartX = e.touches[0].clientX;
+      if (e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
     }, { passive: false });
     horizontalSection.addEventListener('touchend', e => {
-      if (!st.isActive || touchStartX === null) return;
+      if (!st.isActive || touchStartX === null || touchStartY === null) return;
       const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
       const dx = touchEndX - touchStartX;
-      if (Math.abs(dx) > 50 && !isScrolling) {
+      const dy = touchEndY - touchStartY;
+      // Only trigger horizontal scroll if horizontal swipe is dominant
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50 && !isScrolling) {
+        // If at first/last slide and swiping further, allow normal scroll
+        if ((currentIndex === 0 && dx > 0) || (currentIndex === maxIndex && dx < 0)) {
+          touchStartX = null; touchStartY = null; return;
+        }
         isScrolling = true;
         if (dx < 0) scrollToPanel(currentIndex + 1);
         else scrollToPanel(currentIndex - 1);
         setTimeout(() => { isScrolling = false; }, 600);
       }
       touchStartX = null;
+      touchStartY = null;
     }, { passive: false });
 
     // Mouse wheel
