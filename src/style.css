@@ -199,3 +199,38 @@ main > section {
 .horizontal-inner .slide {
   scroll-snap-align: start;
 }
+
+/* Refined What I Do Grid */
+.what-i-do-inner {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  align-items: start;   /* top-align the two columns */
+  gap: 2rem;            /* shrink gap for snug layout */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+/* Left column heading */
+.what-heading h2 {
+  font-size: 2.5rem;
+  margin: 0;            /* remove default spacing */
+}
+
+/* Right column items */
+.what-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;          /* space between each item */
+}
+
+.what-item h3 {
+  font-size: 1.2rem;
+  margin: 0 0 0.25rem;  /* small gap below heading */
+}
+
+.what-item p {
+  margin: 0;            /* collapse default spacing */
+  color: #555;
+  line-height: 1.5;
+}
