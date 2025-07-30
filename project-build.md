@@ -1,14 +1,11 @@
 
 # PROJECT BUILD
 
-
-
 ## Frameworks & Tools
 
 - **Vite**
 - **Lit** v2.8.0
 - **GSAP** v3.12.5 (ScrollTrigger, ScrollSmoother)
-
 
 ---
 
@@ -28,10 +25,8 @@ Each section must be a standalone Lit Web Component.
 
 ---
 
-
 ## Project Structure
 
-```
 krystian/
 ├── src/
 │   ├── components/
@@ -52,19 +47,19 @@ krystian/
 ├── vite.config.js
 ├── package.json
 └── .gitignore
-```
 
 ---
-
 
 ## Scroll Behavior
 
 **Horizontal:**
+
 - HOME → WHAT I DO
 - ARCHIVE → ABOUT
 - ABOUT → SAY HI
 
 **Vertical:**
+
 - WHAT I DO → PROJECT 1 → PROJECT 2 → ARCHIVE
 
 Use **ScrollTrigger** and **ScrollSmoother** from GSAP.
@@ -73,6 +68,7 @@ Ensure section transitions are smooth and responsive.
 ---
 
 ## CSS
+
 - Each section: `100vw` x `100vh`
 - `overflow: hidden`
 - No padding or margin
@@ -80,6 +76,7 @@ Ensure section transitions are smooth and responsive.
 ---
 
 ## Component Guidelines
+
 - Use `aria-label`, `role="region"`
 - `data-section-type="horizontal"` or `"vertical"`
 - Use GSAP to animate visibility, pin, and translateX/Y
@@ -87,12 +84,14 @@ Ensure section transitions are smooth and responsive.
 ---
 
 ## Mobile
+
 - Viewport height fix via JS (set `--vh` var)
 - Disable horizontal slides on very small screens
 
 ---
 
 ## Dev Environment
+
 - Node >= 18
 - npm >= 9
 - VS Code + recommended extensions:
@@ -103,6 +102,7 @@ Ensure section transitions are smooth and responsive.
 ---
 
 ## Dependencies
+
 - `lit`: `^2.8.0`
 - `gsap`: `^3.12.5`
 - `vite`: `^7.0.4`
