@@ -31,7 +31,6 @@ Each section must be a standalone Lit Web Component.
 
 ## Project Structure
 
-```
 krystian/
 ├── src/
 │   ├── components/
@@ -52,7 +51,6 @@ krystian/
 ├── vite.config.js
 ├── package.json
 └── .gitignore
-```
 
 ---
 
